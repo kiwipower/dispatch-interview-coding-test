@@ -1,15 +1,24 @@
-# Dispatch Orchestrator
+# Dispatch Orchestrator Interview Coding Exercise
+
+We're looking for candidates to show [TDD](https://martinfowler.com/bliki/TestDrivenDevelopment.html) and design skills and well as familiarity with the typelevel stack (cats-effect, circe, http4s, etc).
+We're more interested in seeing well-tested and well-designed code than finishing all the features.
+
+## The problem
 
 The purpose of the code is to dispatch (turn on) industrial assets and inform site owner's that their asset was either successfully or unsuccessfully dispatched. 
 Integration with the asset and email sending are handled by third parties via http apis.
 
-## Asset dispatch interface
+## Asset dispatch interface 
+
+Assume a third party API that will dispatch assets given the following endpoint:
 
 `POST to /dispatch/<assetId>/<durationInSeconds>` 
 where assetId is an int and durationInSeconds is how long to dispatch for in seconds
 returns 200 OK if accepted, 400 otherwise
 
 ## Email notification interface
+
+Assume a third party API that will send emails given the following endpoint:
 
 `POST to /email` with json body `{"contact" : {"email" : "<emailaddress>"}, "content" : "<textOfEmail>" }`
 where emailaddress is email of contact and textOfEmail is email content
